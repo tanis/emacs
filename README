@@ -1,0 +1,4 @@
+1. Clone under your HOME
+2. Add .emacs in your HOME like this:
+(load-library "~/emacs/config/emacs")
+3. Enjoy it.
