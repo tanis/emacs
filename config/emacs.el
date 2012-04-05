@@ -13,6 +13,98 @@
 (setq time-stamp-format "%:y-%02m-%02d %3a %02H:%02M:%02S chunyu")
 
 
+;============================ 语言环境字符集设置 =================================
+;;这一部份主要用在linux 环境下，windows下没什么作用
+;; (set-language-environment 'Chinese-GB)
+;; (set-keyboard-coding-system 'utf-8)
+;; (set-clipboard-coding-system 'utf-8)
+;; (set-terminal-coding-system 'utf-8)
+;; (set-buffer-file-coding-system 'utf-8)
+;; (set-default-coding-systems 'utf-8)
+;; (set-selection-coding-system 'utf-8)
+;; (modify-coding-system-alist 'process "*" 'utf-8)
+;; (setq default-process-coding-system '(utf-8 . utf-8))
+;; (setq-default pathname-coding-system 'utf-8)
+;; (set-file-name-coding-system 'utf-8)
+;; (setq ansi-color-for-comint-mode t) ;;处理shell-mode乱码,好像没作用
+;=========================== 语言环境字符集设置结束 ===============================
+
+;============================ MS Windows环境下字体设置 ===========================
+(setq default-frame-alist
+(append
+  '((font . "fontset-chinese")) default-frame-alist))
+
+
+(create-fontset-from-fontset-spec
+  "-outline-Courier New-normal-r-normal-normal-13-97-96-96-c-*-fontset-chinese")
+(set-fontset-font
+ "fontset-default" nil
+ "-outline-新宋体-normal-r-normal-normal-14-*-96-96-c-*-iso10646-1" nil 'prepend)
+(set-fontset-font
+ "fontset-chinese" 'kana
+ "-outline-新宋体-normal-r-normal-normal-14-*-96-96-c-*-iso10646-1" nil 'prepend)
+(set-fontset-font
+ "fontset-chinese" 'han
+ "-outline-新宋体-normal-r-normal-normal-14-*-96-96-c-*-iso10646-1" nil 'prepend)
+(set-fontset-font
+ "fontset-chinese" 'cjk-misc
+ "-outline-新宋体-normal-r-normal-normal-14-*-96-96-c-*-iso10646-1" nil 'prepend)
+(set-fontset-font
+ "fontset-chinese" 'symbol
+ "-outline-新宋体-normal-r-normal-normal-14-*-96-96-c-*-iso10646-1" nil 'prepend)
+(set-default-font "fontset-chinese")
+
+;===========================MS Windows环境下字体设置结束 =========================
+
+
+;============================ Linux环境下字体设置 =================================
+
+;; (create-fontset-from-fontset-spec
+;; "-*-courier-medium-r-normal-*-14-*-*-*-*-*-fontset-courier")
+;; (set-default-font "fontset-courier")
+;; (setq default-frame-alist
+;; (append
+;; '((font . "fontset-courier")) default-frame-alist))
+
+;; (set-fontset-font
+;; "fontset-default" nil
+;; "-*-simsun-*-*-*-*-14-*-*-*-*-*-gb2312.1980-*" nil 'prepend)
+;; (set-fontset-font
+;; "fontset-courier" 'kana
+;; "-*-simsun-*-*-*-*-14-*-*-*-*-*-gbk-0" nil 'prepend)
+;; (set-fontset-font
+;; "fontset-courier" 'han
+;; "-*-simsun-*-*-*-*-14-*-*-*-*-*-gbk-0" nil 'prepend)
+;; (set-fontset-font
+;; "fontset-courier" 'cjk-misc
+;; "-*-simsun-*-*-*-*-14-*-*-*-*-*-gbk-0" nil 'prepend)
+
+;============================ Linux环境下字体设置结束 ==============================
+
+;;;;;;;;;;;;;;;;;;;;语言环境字体设置结束;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+;;解决中英文混排不能正确fill的问题,好像没什么用
+;; (put-charset-property 'chinese-cns11643-5 'nospace-between-words t)
+;; (put-charset-property 'chinese-cns11643-6 'nospace-between-words t)
+;; (put-charset-property 'chinese-cns11643-7 'nospace-between-words t)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;  设置窗口界面 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;取消滚动栏
+(set-scroll-bar-mode nil)
+
+;;设置滚动栏在窗口右侧，而默认是在左侧
+;;(customize-set-variable 'scroll-bar-mode 'right))
+
+;;取消工具栏
+(tool-bar-mode nil)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;  设置界面结束  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;   显示时间设置   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -98,4 +190,4 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;定制操作习惯结束;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (load-library "~/emacs/config/muse-init")
-
+(load-library "~/emacs/config/calendar")
