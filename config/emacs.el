@@ -10,7 +10,7 @@
 ;; 设置时间戳，标识出最后一次保存文件的时间。
 (setq time-stamp-active t)
 (setq time-stamp-warn-inactive t)
-(setq time-stamp-format "%:y-%02m-%02d %3a %02H:%02M:%02S chunyu")
+(setq time-stamp-format "%:y-%02m-%02d %3a %02H:%02M:%02S Tanis")
 
 
 ;============================ 语言环境字符集设置 =================================
@@ -191,3 +191,41 @@
 
 (load-library "~/emacs/config/muse-init")
 (load-library "~/emacs/config/calendar")
+
+;; should be last, ensure key-define active by this config
+(load-library "~/emacs/config/keypad")
+
+
+;;; ssh
+(setq tramp-default-method "plink")
+(setq tramp-auto-save-directory "~/.emacs.d/auto-save-list")
+(setq tramp-chunksize 328)
+(setq tramp-default-user "tanis")
+(add-to-list 'backup-directory-alist
+             (cons "." "~/.emacs.d/backups/"))
+(setq tramp-backup-directory-alist backup-directory-alist)
+
+(require 'tramp)
+
+(require 'php-mode)
+(add-hook 'php-mode-hook
+          (function (lambda ()
+                      ;; GNU style
+                      (setq php-indent-level 4
+                            php-continued-statement-offset 4
+                            php-continued-brace-offset 0
+                            php-brace-offset 0
+                            php-brace-imaginary-offset 0
+                            php-label-offset -4
+                            c-set-style "K&R"
+                            ))))
+
+
+;;; w3m, seems useless
+;(add-to-list 'exec-path "~/emacs/packages/w3mbin")
+;(add-to-list 'load-path "~/emacs/packages/emacs-w3m")
+;(require 'w3m-load)
+;(setq w3m-use-favicon nil)
+;(setq w3m-command-arguments '("-cookie" "-F"))
+;(setq w3m-use-cookies t)
+;(setq w3m-home-page "")     
